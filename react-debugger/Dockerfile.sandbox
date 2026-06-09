@@ -1,0 +1,12 @@
+FROM python:3.12-slim
+
+# pytest is the only dep the agent needs to run tests.
+# This layer is cached — subsequent docker builds are instant.
+RUN pip install --no-cache-dir pytest
+
+# The repo under test is mounted at /repo at container start time.
+# Nothing is COPY'd here — the image is generic, the code comes from the mount.
+WORKDIR /repo
+
+# Keep the container alive so we can `docker exec` commands into it.
+CMD ["sleep", "infinity"]

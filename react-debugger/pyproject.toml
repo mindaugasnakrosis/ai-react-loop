@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "react-debugger"
+version = "0.1.0"
+description = "A self-debugging agent built on the ReAct loop pattern"
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.40.0",
+    "rich>=13.0.0",
+    "pydantic-settings>=2.0.0",
+    "typer>=0.12.0",
+]
+
+[project.scripts]
+react-debugger = "react_debugger.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/react_debugger"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
